@@ -32,7 +32,7 @@ public class RealTimeQueries {
         System.out.println("How many male and female employees are there in the organization? " + expectedResult);
 
         //Print the name of all departments in the organization?
-        List<String> departmentNameList = employeeList.stream().map(Employee::getDepartment).distinct().collect(Collectors.toList());
+        List<String> departmentNameList = employeeList.stream().map(Employee::getDepartment).distinct().toList();
         System.out.println("Print the name of all departments in the organization? " + departmentNameList);
 
         //What is the average age of male and female employees?
@@ -40,11 +40,11 @@ public class RealTimeQueries {
         System.out.println("What is the average age of male and female employees? " + averageAge);
 
         //Get the details of highest paid employee in the organization?
-        Optional<Employee> highestPaidEmployee=employeeList.stream().collect(Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary)));
+        Optional<Employee> highestPaidEmployee = employeeList.stream().max(Comparator.comparingDouble(Employee::getSalary));
         System.out.println("Get the details of highest paid employee in the organization? " + highestPaidEmployee);
 
         //Get the names of all employees who have joined after 2015?
-        List<String> employeeNamelist = employeeList.stream().filter(e -> e.getYearOfJoining() <= 2015).map(Employee::getName).collect(Collectors.toList());
+        List<String> employeeNamelist = employeeList.stream().filter(e -> e.getYearOfJoining() <= 2015).map(Employee::getName).toList();
         System.out.println("Get the names of all employees who have joined after 2015? " + employeeNamelist);
 
         // Count the number of employees in each department?
@@ -52,14 +52,19 @@ public class RealTimeQueries {
         System.out.println("Count the number of employees in each department? " + noEmployeeInDepartment);
 
         //Given a list of employees, how do you find out who is the senior most employee in the organization?
-        Optional<Employee> seniorEmployeeList=employeeList.stream().sorted(Comparator.comparingInt(Employee::getYearOfJoining)).findFirst();
+        Optional<Employee> seniorEmployeeList = employeeList.stream().sorted(Comparator.comparingInt(Employee::getYearOfJoining)).findFirst();
         System.out.println("Given a list of employees, how do you find out who is the senior most employee in the organization? " + seniorEmployeeList);
 
         //Given a list of employees, get the details of the youngest employee in the organization?
-        Optional<Employee> youngestEmployeeList= employeeList.stream().sorted(Comparator.comparingInt(Employee::getAge)).findFirst();
+        Optional<Employee> youngestEmployeeList = employeeList.stream().sorted(Comparator.comparingInt(Employee::getAge)).findFirst();
         System.out.println("Given a list of employees, get the details of the youngest employee in the organization? " + youngestEmployeeList);
 
 
+        //Sort by name
+
+        employeeList.stream().sorted(Comparator.comparing(Employee::getName).reversed()).forEach(System.out::println);
+        System.out.println("=====================================");
+        employeeList.stream().sorted(Comparator.comparingInt(Employee::getAge)).toList().forEach(System.out::println);
 
 
     }
