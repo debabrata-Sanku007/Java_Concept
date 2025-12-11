@@ -1,4 +1,4 @@
-package com.java8.practice.operationexample;
+package com.java.practice.operationexample;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,9 +24,9 @@ public class MapConvertInJava8 {
         //print all value
         studentMap.values().stream().forEach(System.out::println);
         //convert map to arraylist
-        List<Map.Entry<String,String>> studentList=studentMap.entrySet().stream().toList();
-        for(Map.Entry<String,String> entry :studentList){
-            System.out.println("Data inside the list: "+entry);
+        List<Map.Entry<String, String>> studentList = studentMap.entrySet().stream().toList();
+        for (Map.Entry<String, String> entry : studentList) {
+            System.out.println("Data inside the list: " + entry);
         }
 
     }

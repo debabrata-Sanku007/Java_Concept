@@ -1,6 +1,6 @@
-package com.java8.practice.operationexample;
+package com.java.practice.operationexample;
 
-import com.java8.practice.objectcollection.Employee;
+import com.java.practice.objectcollection.Employee;
 
 import java.util.*;
 import java.util.stream.Collectors;

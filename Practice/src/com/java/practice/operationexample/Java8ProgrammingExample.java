@@ -1,4 +1,4 @@
-package com.java8.practice.operationexample;
+package com.java.practice.operationexample;
 
 import java.util.Arrays;
 import java.util.Comparator;

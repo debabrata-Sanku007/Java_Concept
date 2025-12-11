@@ -1,4 +1,4 @@
-package com.java8.practice.objectcollection;
+package com.java.practice.objectcollection;
 
 public class Employee {
     int id;
