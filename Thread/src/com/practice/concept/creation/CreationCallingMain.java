@@ -1,6 +1,6 @@
 package com.practice.concept.creation;
 
-public class CreationCalling {
+public class CreationCallingMain {
     public static void main(String[] args) {
         System.out.println("Main Method "+Thread.currentThread().getName());
         //Calling by Thread Class
