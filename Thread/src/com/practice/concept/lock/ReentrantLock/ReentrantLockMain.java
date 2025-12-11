@@ -1,6 +1,6 @@
-package com.practice.concept.lock;
+package com.practice.concept.lock.ReentrantLock;
 
-public class LockMain {
+public class ReentrantLockMain {
     public static void main(String[] args) {
         BankAccount account = new BankAccount();
         Runnable task = new Runnable() {

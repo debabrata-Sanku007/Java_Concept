@@ -1,4 +1,4 @@
-package com.practice.concept.lock;
+package com.practice.concept.lock.ReentrantLock;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
