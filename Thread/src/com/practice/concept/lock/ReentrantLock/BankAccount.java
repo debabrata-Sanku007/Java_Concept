@@ -12,21 +12,27 @@ public class BankAccount {
     // and it takes too many times then others Threads are block
     // until it finish his work, So granular level control we can use this ReentrantLock.
 
-    public void withdraw(int amount) throws InterruptedException {
+    public void withdraw(int amount) {
         System.out.println(Thread.currentThread().getName() + " attempting to withdraw " + amount);
         // Now other thread is wait for 3 second, if they get the lock then enter the critical section or else proceed.
         //No wait for previous thread.
-        if (lock.tryLock(3, TimeUnit.SECONDS)) {
-            if (balance >= amount) {
-                System.out.println(Thread.currentThread().getName() + " proceeding withdraw.. ");
-                balance -= amount;
-                Thread.sleep(5000);//consider this sleep for database transaction
-                System.out.println(Thread.currentThread().getName() + " Remaining Balance " + balance);
+        try {
+            if (lock.tryLock(3, TimeUnit.SECONDS)) {
+                if (balance >= amount) {
+                    System.out.println(Thread.currentThread().getName() + " proceeding withdraw.. ");
+                    balance -= amount;
+                    Thread.sleep(5000);//consider this sleep for database transaction
+                    System.out.println(Thread.currentThread().getName() + " Remaining Balance " + balance);
+                } else {
+                    System.out.println(Thread.currentThread().getName() + " Insufficient balance.. ");
+                }
             } else {
-                System.out.println(Thread.currentThread().getName() + " Insufficient balance.. ");
+                System.out.println(Thread.currentThread().getName() + " Could not acquire the lock ");
             }
-        } else {
-            System.out.println(Thread.currentThread().getName() + " Could not acquire the lock ");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally { //we need to unlock the lock in finally block it is mandatory
+            lock.unlock();
         }
     }
 
